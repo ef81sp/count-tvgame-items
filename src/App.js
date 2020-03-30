@@ -1,24 +1,49 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react';
+import Input from './Input';
+import Items from './Items';
 
 function App() {
+  const [items, updateItems] = useState({ ほげ: { max: 5, now: 1 } });
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+    <div>
+      <header>
+        <h1>アイテムとかカウントするやつ</h1>
       </header>
+      <Input
+        onClick={({ name, max }) => {
+          if (!name) {
+            alert('なまえいれてください');
+            return;
+          }
+          if (Object.keys(items).includes(name)) {
+            alert('もうあります');
+            return;
+          }
+          updateItems({ ...items, [name]: { max, now: 0 } });
+        }}
+      />
+      <Items
+        items={items}
+        onClickPlus={name => {
+          const item = items[name];
+          updateItems({
+            ...items,
+            [name]: { max: item.max, now: item.now + 1 }
+          });
+        }}
+        onClickMinus={name => {
+          const item = items[name];
+          updateItems({
+            ...items,
+            [name]: { max: item.max, now: item.now - 1 }
+          });
+        }}
+        onClickDelete={name => {
+          const newItems = { ...items };
+          delete newItems[name];
+          updateItems(newItems);
+        }}
+      />
     </div>
   );
 }
