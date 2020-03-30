@@ -3,7 +3,9 @@ import Input from './Input';
 import Items from './Items';
 
 function App() {
-  const [items, updateItems] = useState({ てっこうせき: { max: 5, now: 1 } });
+  const [items, updateItems] = useState([
+    { name: 'てっこうせき', max: 5, now: 1 }
+  ]);
   return (
     <div>
       <header>
@@ -15,32 +17,30 @@ function App() {
             alert('なまえいれてください');
             return;
           }
-          if (Object.keys(items).includes(name)) {
+          if (items.find(i => i.name === name)) {
             alert('もうあります');
             return;
           }
-          updateItems({ ...items, [name]: { max, now: 0 } });
+          updateItems([...items, { name, max, now: 0 }]);
         }}
       />
       <Items
         items={items}
-        onClickPlus={name => {
-          const item = items[name];
-          updateItems({
-            ...items,
-            [name]: { max: item.max, now: item.now + 1 }
-          });
+        onClickPlus={i => {
+          const { name, max, now } = items[i];
+          const newItems = [...items];
+          newItems.splice(i, 1, { name, max, now: now + 1 });
+          updateItems(newItems);
         }}
-        onClickMinus={name => {
-          const item = items[name];
-          updateItems({
-            ...items,
-            [name]: { max: item.max, now: item.now - 1 }
-          });
+        onClickMinus={i => {
+          const { name, max, now } = items[i];
+          const newItems = [...items];
+          newItems.splice(i, 1, { name, max, now: now - 1 });
+          updateItems(newItems);
         }}
-        onClickDelete={name => {
-          const newItems = { ...items };
-          delete newItems[name];
+        onClickDelete={i => {
+          const newItems = [...items];
+          newItems.splice(i, 1);
           updateItems(newItems);
         }}
       />

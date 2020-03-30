@@ -16,14 +16,14 @@ function Item({
       {now}
       {' / '}
       {max}
-      <button onClick={() => onClickPlus(name)}>
+      <button onClick={() => onClickPlus(index)}>
         <label>+</label>
       </button>
-      <button onClick={() => onClickMinus(name)}>
+      <button onClick={() => onClickMinus(index)}>
         <label>-</label>
       </button>
       {now >= max && '🎉'}
-      <button onClick={() => onClickDelete(name)}>
+      <button onClick={() => onClickDelete(index)}>
         <label>削除</label>
       </button>
     </li>
