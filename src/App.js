@@ -3,14 +3,16 @@ import Input from './Input';
 import Items from './Items';
 
 function App() {
-  const [items, updateItems] = useState([
-    { name: 'てっこうせき', max: 5, now: 1 }
-  ]);
+  const savedItems = localStorage.getItem('items');
+  const [items, updateItems] = useState(
+    JSON.parse(savedItems) || [{ name: 'てっこうせき', max: 5, now: 1 }]
+  );
   return (
     <div>
       <header>
         <h1>アイテムとかカウントするやつ</h1>
       </header>
+
       <Input
         onClick={({ name, max }) => {
           if (!name) {
@@ -24,6 +26,23 @@ function App() {
           updateItems([...items, { name, max, now: 0 }]);
         }}
       />
+      <button
+        onClick={() => {
+          localStorage.setItem('items', JSON.stringify(items));
+          alert('ほぞんしました');
+        }}
+      >
+        <label>データを保存する</label>
+      </button>
+      <button
+        onClick={() => {
+          localStorage.removeItem('items');
+          updateItems([]);
+          alert('けしました');
+        }}
+      >
+        <label>データを消す</label>
+      </button>
       <Items
         items={items}
         onClickPlus={i => {
