@@ -3,7 +3,7 @@ import Input from './Input';
 import Items from './Items';
 
 function App() {
-  const [items, updateItems] = useState({ ほげ: { max: 5, now: 1 } });
+  const [items, updateItems] = useState({ てっこうせき: { max: 5, now: 1 } });
   return (
     <div>
       <header>
