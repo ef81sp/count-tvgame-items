@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import Input from './CountItemsInput';
 import Items from './CountItemsItems';
 
-function App() {
+function CountItems() {
   const savedItems = localStorage.getItem('items');
   const [items, updateItems] = useState(
     JSON.parse(savedItems) || [{ name: 'てっこうせき', max: 5, now: 1 }]
@@ -67,4 +67,4 @@ function App() {
   );
 }
 
-export default App;
+export default CountItems;
