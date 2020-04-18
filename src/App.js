@@ -18,7 +18,9 @@ import MenuIcon from '@material-ui/icons/Menu';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
+
 import CountItems from './components/CountItems';
+import RollDice from './components/RollDice';
 
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 
@@ -73,6 +75,7 @@ function App(props) {
       <Divider />
       <List>
         <ListItemLink primary="アイテムカウントするやつ" to="/count-items" />
+        <ListItemLink primary="サイコロ" to="/roll-dice" />
       </List>
       <Divider />
     </div>
@@ -138,6 +141,9 @@ function App(props) {
               </Route>
               <Route path="/count-items">
                 <CountItems />
+              </Route>
+              <Route path="/roll-dice">
+                <RollDice />
               </Route>
             </Switch>
           </Container>
