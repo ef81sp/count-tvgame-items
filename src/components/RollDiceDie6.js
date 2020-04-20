@@ -4,6 +4,7 @@ import { makeStyles } from '@material-ui/core/styles';
 const useStyles = makeStyles({
   die: {
     fontSize: '10em',
+    lineHeight: '0.8em'
   },
 });
 
