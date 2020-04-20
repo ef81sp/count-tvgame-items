@@ -14,7 +14,7 @@ const useStyles = makeStyles({
 
 function RollDice() {
   const classes = useStyles();
-  const [nums, setNums] = useState([1]);
+  const [nums, setNums] = useState([3, 3, 4]);
   const [diceLength, setDiceLength] = useState(3);
 
   const rollingDice = (diceLength, max) => {
