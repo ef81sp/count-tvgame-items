@@ -21,6 +21,7 @@ import Container from '@material-ui/core/Container';
 
 import CountItems from './components/CountItems';
 import RollDice from './components/RollDice';
+import MahjongClosedFlash from './components/MahjongClosedFlash';
 
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 
@@ -76,6 +77,7 @@ function App(props) {
       <List>
         <ListItemLink primary="アイテムカウントするやつ" to="/count-items" />
         <ListItemLink primary="サイコロ" to="/roll-dice" />
+        <ListItemLink primary="メンチン牌姿生成" to="/mahjong-closed-flash" />
       </List>
       <Divider />
     </div>
@@ -144,6 +146,9 @@ function App(props) {
               </Route>
               <Route path="/roll-dice">
                 <RollDice />
+              </Route>
+              <Route path="/mahjong-closed-flash">
+                <MahjongClosedFlash />
               </Route>
             </Switch>
           </Container>
