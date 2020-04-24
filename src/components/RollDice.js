@@ -4,6 +4,7 @@ import Grid from '@material-ui/core/Grid';
 import Slider from '@material-ui/core/Slider';
 import { makeStyles } from '@material-ui/core/styles';
 
+import { getRandomInt } from '../utils'
 import Die6 from './RollDiceDie6';
 
 const useStyles = makeStyles({
@@ -58,10 +59,6 @@ function RollDice() {
       </Grid>
     </div>
   );
-}
-
-function getRandomInt(max) {
-  return Math.floor(Math.random() * Math.floor(max - 1)) + 1;
 }
 
 export default RollDice;
