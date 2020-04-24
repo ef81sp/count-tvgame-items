@@ -11,6 +11,9 @@ import { getRandomInt } from '../utils';
 import MahjongTile from './MahjongTile';
 
 const useStyles = makeStyles({
+  tiles: {
+    width: '100%',
+  },
   controler: {
     margin: '1em',
   },
@@ -22,6 +25,12 @@ const tileNumRangeMaster = {
   hard: '3to7',
 };
 
+function getTileWidth(tilesLength) {
+  const tileWidthPx = 47
+  const windowWidth = window.innerWidth * 0.8
+  return tileWidthPx > windowWidth / tilesLength ? `${100 / tilesLength}%` : "auto"
+}
+
 export default function MahjongClosedFlash() {
   const classes = useStyles();
   const [tileNums, setTileNums] = useState([4, 4, 4, 5, 6, 6, 6]);
@@ -31,9 +40,14 @@ export default function MahjongClosedFlash() {
 
   return (
     <div>
-      <div>
+      <div className={classes.tiles}>
         {(isSort ? [...tileNums].sort() : tileNums).map((n, i) => (
-          <MahjongTile num={n} suit="s" key={i} />
+          <MahjongTile
+            num={n}
+            suit="s"
+            key={i}
+            width={getTileWidth(tilesLength)}
+          />
         ))}
       </div>
 
@@ -47,6 +61,7 @@ export default function MahjongClosedFlash() {
         >
           リロード
         </Button>
+
         <Grid className={classes.controler} container spacing={5}>
           <div>
             <FormLabel component="legend">枚数</FormLabel>
@@ -55,6 +70,7 @@ export default function MahjongClosedFlash() {
               value={tilesLength}
               onChange={(e, v) => {
                 setTilesLength(parseInt(v));
+                setTileNums(getTileNums(parseInt(v), tileNumRange));
               }}
             >
               <FormControlLabel value={7} control={<Radio />} label="7枚" />

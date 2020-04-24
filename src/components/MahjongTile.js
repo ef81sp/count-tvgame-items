@@ -9,9 +9,9 @@ import s7 from '../img/mahjongTile/s7.gif';
 import s8 from '../img/mahjongTile/s8.gif';
 import s9 from '../img/mahjongTile/s9.gif';
 
-export default function MahjongTile({ num, suit, isUpsideDown }) {
+export default function MahjongTile({ num, suit, isUpsideDown, width }) {
   const src = getTilePath({ num, suit });
-  return <img src={src} alt={num} />;
+  return <img src={src} alt={num} style={{ width }} />;
 }
 
 function getTilePath({ num, suit }) {
